@@ -1,52 +1,44 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
 
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World!</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
 
-    <div class="grid-container">
+<body>
 
-      <div class="grid-item">
-        
-        <ul>
-          <li>
-            <input class="textButton" id="save" type="button" value="save" />
-          </li>
-          <li>
-            <input class="textButton" id="open" type="button" value="open" />
-          </li>
-          <li>
-            <input id="test1" type="button" value="test1" />
-          </li>
-        </ul>
+  <div class="grid-container">
 
-        <br>
+    <div class="grid-item">
 
-        <div id="ListBox">
+      <ul>
+        <li>
+          <input class="textButton" id="save" type="button" value="save" />
+        </li>
+        <li>
+          <input class="textButton" id="open" type="button" value="open" />
+        </li>
+        <li>
+          <input id="test1" type="button" value="test1" />
+        </li>
+      </ul>
 
-        </div>
-
-      </div>
-
-      
-      <div class="grid-item">
-        <textarea id="content" type="text" class="textbox sc1"></textarea>
+      <br>
+      <div id="ListBox">
       </div>
 
     </div>
 
-  
+    <div class="grid-item">
+      <textarea id="content" type="text" class="textbox sc1"></textarea>
+    </div>
 
+  </div>
 
+  <script src="renderer.js"></script>
 
+</body>
 
-  
-  
-  
-    <script src="renderer.js"></script>
-  </body>
 </html>

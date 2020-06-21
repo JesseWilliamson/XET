@@ -1,92 +1,83 @@
-var app = require('electron').remote;
+var app = require("electron").remote;
 var dialog = app.dialog;
-var fs = require('fs');
+var fs = require("fs");
+// var $ = require("jquery")
 // const {writeFile} = require('fs');
 // const {readFile} = require('fs');
 WIN = app.getCurrentWindow();
 
-
-
-function test1(){
-    var content = document.getElementById('content').value;
-    var contentarr = content.split(/[\s,\r]+/);
-    var titlearr
-
-
-
-    console.log(contentarr.length)
-
-    titlearr = contentarr.filter(function (item) {
-        return item.indexOf("#") == 0;
-     });
-
-    console.log(titlearr);
-
-
-
-
-
-    let ListBox = document.getElementById('ListBox');
-    let arr = ['html', 'css', 'javascript'];
+$(document).ready(function(){
     
-    let list = "<ul>";
-    
-    for (let i = 0; i < titlearr.length; i++){
-        list += "<li>" + titlearr[i] + "</li>"
+    var content = document.getElementById("content").value;
+
+    $(content).change(function(){
+        console.log("text changed!")
+    });
+
+});
+
+function test1() {
+  var content = document.getElementById("content").value;
+  var contentarr = content.split(/[\s,\r]+/);
+  var titlearr;
+
+  console.log(contentarr.length);
+
+  titlearr = contentarr.filter(function (item) {
+    return item.indexOf("#") == 0;
+  });
+
+  console.log(titlearr);
+
+  let ListBox = document.getElementById("ListBox");
+  let list = "<ul>";
+
+  for (let i = 0; i < titlearr.length; i++) {
+    list += "<li>" + titlearr[i] + "</li>";
+  }
+  
+  list += "</ul>";
+  ListBox.innerHTML = list;
+}
+
+function readFile(filepath) {
+  fs.readFile(filepath, "utf-8", (err, data) => {
+    if (err) {
+      console.log("error");
+      return;
     }
-    list += "</ul>"
-    
-    ListBox.innerHTML = list
-};
-
-function readFile(filepath){
-    fs.readFile(filepath, 'utf-8', (err, data) => {
-        if (err){
-            console.log('error')
-            return;
-        }
-        console.log(data)
-        content.value = data;
-    })
-
+    console.log(data);
+    content.value = data;
+  });
 }
 
 async function openFile() {
-    
-    var content = document.getElementById('content').value;
-    
-    const paths = dialog.showOpenDialogSync(WIN, { properties: ['openFile', 'multiSelections'] });
-    console.log(paths[0]);
-    readFile(paths[0])  
-    
-    
+  var content = document.getElementById("content").value;
 
+  const paths = dialog.showOpenDialogSync(WIN, {
+    properties: ["openFile", "multiSelections"],
+  });
+  console.log(paths[0]);
+  readFile(paths[0]);
 }
 
-
 async function saveFile() {
+  var content = document.getElementById("content").value;
 
-    var content = document.getElementById('content').value;
+  console.log("Save button");
 
-    console.log("Save button");
+  let { filePath } = await dialog.showSaveDialog({
+    buttonlabel: "Save file",
+  });
 
+  console.log(filePath);
 
-    let { filePath } = await dialog.showSaveDialog({
-        buttonlabel: 'Save file'
-    });
-    
-    console.log(filePath);
+  fs.writeFile(filePath, content, () => console.log("we done fam"));
 
-    fs.writeFile(filePath, content, () => console.log('we done fam'));
-
-    console.log("saved sucessfully!");
-    console.log(content);
-
-};
+  console.log("saved sucessfully!");
+  console.log(content);
+}
 
 document.getElementById("save").onclick = saveFile;
 document.getElementById("open").onclick = openFile;
 document.getElementById("test1").onclick = test1;
-
-
-

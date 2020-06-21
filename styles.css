@@ -3,7 +3,7 @@
   height: 90vh;
   width: 100%;
   overflow: auto;
-  padding: 0; 
+  padding: 0;
   margin: 0;
   border-collapse: collapse;
   outline: none;
@@ -13,14 +13,13 @@
 .grid-container {
   display: grid;
   grid-template-columns: 20% 80%;
-  padding: 0; 
+  padding: 0;
   margin: 0;
   border-collapse: collapse;
 }
 
-
 .grid-item {
-  padding: 0; 
+  padding: 0;
   margin: 0;
   border-collapse: collapse;
 }
@@ -28,23 +27,24 @@
 .textButton {
   border: none;
   background-color: rgba(0, 0, 0, 0);
-  
+
 }
 
 ul {
-list-style-type: none;
+  list-style-type: none;
 }
-
 
 /* Scroll 1 */
 .sc1::-webkit-scrollbar {
   width: 0px;
   height: 0px;
 }
+
 .sc1::-webkit-scrollbar-track {
   background-color: rgba(0, 0, 0, 0.4);
   border-radius: 10px;
 }
+
 .sc1::-webkit-scrollbar-thumb {
   background-color: #dfdfdf;
   border-radius: 10px;
