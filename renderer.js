@@ -6,6 +6,8 @@ var fs = require("fs");
 // const {readFile} = require('fs');
 WIN = app.getCurrentWindow();
 
+window.$ = window.jQuery = require('jquery');
+
 $(document).ready(function(){
     
     var content = document.getElementById("content").value;
@@ -20,22 +22,16 @@ function test1() {
   var content = document.getElementById("content").value;
   var contentarr = content.split(/[\s,\r]+/);
   var titlearr;
-
   console.log(contentarr.length);
-
   titlearr = contentarr.filter(function (item) {
     return item.indexOf("#") == 0;
   });
-
   console.log(titlearr);
-
   let ListBox = document.getElementById("ListBox");
   let list = "<ul>";
-
   for (let i = 0; i < titlearr.length; i++) {
     list += "<li>" + titlearr[i] + "</li>";
   }
-  
   list += "</ul>";
   ListBox.innerHTML = list;
 }
@@ -53,7 +49,6 @@ function readFile(filepath) {
 
 async function openFile() {
   var content = document.getElementById("content").value;
-
   const paths = dialog.showOpenDialogSync(WIN, {
     properties: ["openFile", "multiSelections"],
   });
@@ -61,19 +56,14 @@ async function openFile() {
   readFile(paths[0]);
 }
 
-async function saveFile() {
+async function saveFile(){
   var content = document.getElementById("content").value;
-
   console.log("Save button");
-
   let { filePath } = await dialog.showSaveDialog({
     buttonlabel: "Save file",
   });
-
   console.log(filePath);
-
   fs.writeFile(filePath, content, () => console.log("we done fam"));
-
   console.log("saved sucessfully!");
   console.log(content);
 }
@@ -81,3 +71,28 @@ async function saveFile() {
 document.getElementById("save").onclick = saveFile;
 document.getElementById("open").onclick = openFile;
 document.getElementById("test1").onclick = test1;
+window.onload = function()
+{
+    if (window.jQuery)
+    {
+        alert('jQuery is loaded');
+    }
+    else
+    {
+        alert('jQuery is not loaded');
+    }
+}
+
+
+var oldVal = "";
+$("#content").on("change keyup paste", function() {
+    var currentVal = $(this).val();
+    if(currentVal == oldVal) {
+        return; //check to prevent multiple simultaneous triggers
+    }
+    
+    oldVal = currentVal;
+    //action to be performed on textarea changed
+    console.log("changed!");
+    test1()
+});
