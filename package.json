@@ -1,0 +1,16 @@
+{
+  "name": "groundup",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^9.0.4",
+    "fs": "0.0.1-security",
+    "jquery": "^3.5.1"
+  },
+  "description": ""
+}
