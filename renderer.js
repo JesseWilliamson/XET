@@ -21,12 +21,16 @@ $(document).ready(function(){
 function wordScan() {
   var content = document.getElementById("content").value;
   var contentarr = content.split(/[\s,\r]+/);
-  var titlearr;
+
   console.log(contentarr.length);
   titlearr = contentarr.filter(function (item) {
     return item.indexOf("#") == 0;
   });
   console.log(titlearr);
+  
+  vocabulary = new Set(contentarr)
+  console.log(vocabulary.size)
+  
   let ListBox = document.getElementById("ListBox");
   let list = "<ul>";
   for (let i = 0; i < titlearr.length; i++) {
@@ -34,6 +38,10 @@ function wordScan() {
   }
   list += "</ul>";
   ListBox.innerHTML = list;
+
+  let statsBox = document.getElementById("statsBox")
+  statsBox.innerHTML = "W:"+String(contentarr.length-1)+" "+"V:"+String(vocabulary.size-1)
+
 }
 
 function readFile(filepath) {
