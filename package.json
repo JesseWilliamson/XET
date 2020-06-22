@@ -10,7 +10,9 @@
   "dependencies": {
     "electron": "^9.0.4",
     "fs": "0.0.1-security",
-    "jquery": "^3.5.1"
+    "insert-text-at-cursor": "^0.3.0",
+    "jquery": "^3.5.1",
+    "mousetrap": "^1.6.5"
   },
   "description": ""
 }

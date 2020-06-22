@@ -1,6 +1,8 @@
 var app = require("electron").remote;
 var dialog = app.dialog;
 var fs = require("fs");
+var insertTextAtCursor = require("insert-text-at-cursor");
+var Mousetrap = require("mousetrap")
 // var $ = require("jquery")
 // const {writeFile} = require('fs');
 // const {readFile} = require('fs');
@@ -9,6 +11,14 @@ WIN = app.getCurrentWindow();
 window.$ = window.jQuery = require('jquery');
 
 wordScan()
+
+shortcut.add("Ctrl+e",function() {
+
+  console.log("Hi there!");
+});
+
+
+
 
 $(document).ready(function(){
     
