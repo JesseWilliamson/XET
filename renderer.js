@@ -25,8 +25,7 @@ function wordScan() {
   var contentarr = content.split(/[\r?\n\s,\r]+/);
   var lineArr = content.split(/[\r?\n]/)
 
-  console.log(contentarr.length);
-  titlearr = contentarr.filter(function (item) {
+  titlearr = lineArr.filter(function (item) {
     return item.indexOf("#") == 0;
   });
   console.log(titlearr);
