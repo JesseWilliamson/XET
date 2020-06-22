@@ -18,7 +18,7 @@ $(document).ready(function(){
 
 });
 
-function test1() {
+function wordScan() {
   var content = document.getElementById("content").value;
   var contentarr = content.split(/[\s,\r]+/);
   var titlearr;
@@ -70,18 +70,7 @@ async function saveFile(){
 
 document.getElementById("save").onclick = saveFile;
 document.getElementById("open").onclick = openFile;
-document.getElementById("test1").onclick = test1;
-window.onload = function()
-{
-    if (window.jQuery)
-    {
-        alert('jQuery is loaded');
-    }
-    else
-    {
-        alert('jQuery is not loaded');
-    }
-}
+
 
 
 var oldVal = "";
@@ -94,5 +83,5 @@ $("#content").on("change keyup paste", function() {
     oldVal = currentVal;
     //action to be performed on textarea changed
     console.log("changed!");
-    test1()
+    wordScan()
 });
