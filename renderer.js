@@ -36,7 +36,7 @@ function wordScan() {
   let ListBox = document.getElementById("ListBox");
   let list = "<ul>";
   for (let i = 0; i < titlearr.length; i++) {
-    list += "<li>" + titlearr[i] + "</li>";
+    list += "<li>" + titlearr[i] + "</li>" + "<br>";
   }
   list += "</ul>";
   ListBox.innerHTML = list;
