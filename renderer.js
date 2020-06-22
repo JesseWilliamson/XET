@@ -8,6 +8,8 @@ WIN = app.getCurrentWindow();
 
 window.$ = window.jQuery = require('jquery');
 
+wordScan()
+
 $(document).ready(function(){
     
     var content = document.getElementById("content").value;
@@ -20,7 +22,8 @@ $(document).ready(function(){
 
 function wordScan() {
   var content = document.getElementById("content").value;
-  var contentarr = content.split(/[\s,\r]+/);
+  var contentarr = content.split(/[\r?\n\s,\r]+/);
+  var lineArr = content.split(/[\r?\n]/)
 
   console.log(contentarr.length);
   titlearr = contentarr.filter(function (item) {
@@ -40,7 +43,7 @@ function wordScan() {
   ListBox.innerHTML = list;
 
   let statsBox = document.getElementById("statsBox")
-  statsBox.innerHTML = "W:"+String(contentarr.length-1)+" "+"V:"+String(vocabulary.size-1)
+  statsBox.innerHTML = "W:"+String(contentarr.length-1)+" "+"V:"+String(vocabulary.size-1+" "+"L:"+lineArr.length)
 
 }
 
