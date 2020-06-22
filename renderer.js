@@ -13,7 +13,8 @@ window.$ = window.jQuery = require('jquery');
 wordScan()
 
 shortcut.add("Ctrl+e",function() {
-
+  el=document.getElementById("content");
+  insertTextAtCursor(el, 'foobar');
   console.log("Hi there!");
 });
 
