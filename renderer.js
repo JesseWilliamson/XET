@@ -1,12 +1,27 @@
-var app = require("electron").remote;
-var dialog = app.dialog;
+// var app = require("electron").remote;
+// var dialog = app.dialog;
 var fs = require("fs");
 var insertTextAtCursor = require("insert-text-at-cursor");
 var Mousetrap = require("mousetrap")
+// var ipcRenderer = require("electron").ipcRenderer;
+
+
+const { remote, ipcRenderer } = require('electron')
+
+// var dialog = remote.dialog;
+
+
 // var $ = require("jquery")
 // const {writeFile} = require('fs');
 // const {readFile} = require('fs');
-WIN = app.getCurrentWindow();
+WIN = remote.getCurrentWindow();
+
+
+
+// const { ipcRenderer } = window.require('electron');
+ipcRenderer.on('MSG_FROM_MAIN', (event, data) => console.log(data));
+
+
 
 window.$ = window.jQuery = require('jquery');
 
@@ -70,7 +85,7 @@ function readFile(filepath) {
 
 async function openFile() {
   var content = document.getElementById("content").value;
-  const paths = dialog.showOpenDialogSync(WIN, {
+  const paths = remote.dialog.showOpenDialogSync(WIN, {
     properties: ["openFile", "multiSelections"],
   });
   console.log(paths[0]);
@@ -80,7 +95,7 @@ async function openFile() {
 async function saveFile(){
   var content = document.getElementById("content").value;
   console.log("Save button");
-  let { filePath } = await dialog.showSaveDialog({
+  let { filePath } = await remote.dialog.showSaveDialog({
     buttonlabel: "Save file",
   });
   console.log(filePath);
