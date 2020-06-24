@@ -30,14 +30,12 @@ app.on('ready', function(){
         {
           label: 'Open',
           click: function(){
-            const { ipcMain } = require('electron');
             mainWindow.webContents.send('openFile');
           }
         },
         {
           label: 'Save As',
           click: function(){
-            const { ipcMain } = require('electron');
             mainWindow.webContents.send('saveFileAs');
           }
         }
