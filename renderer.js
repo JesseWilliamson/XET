@@ -19,7 +19,8 @@ WIN = remote.getCurrentWindow();
 
 
 // const { ipcRenderer } = window.require('electron');
-ipcRenderer.on('MSG_FROM_MAIN', (event, data) => console.log(data));
+ipcRenderer.on('openFile', (event) => openFile());
+ipcRenderer.on('saveFileAs', (event) => saveFile());
 
 
 
@@ -121,3 +122,4 @@ $("#content").on("change keyup paste", function() {
     console.log("changed!");
     wordScan()
 });
+
