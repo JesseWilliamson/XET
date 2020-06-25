@@ -32,15 +32,18 @@ app.on('ready', function(){
           click: function(){
             mainWindow.webContents.send('openFile');
           }
+          
         },
         {
           label: 'Save As',
+          accelerator: 'CmdOrCtrl+shift+s',
           click: function(){
             mainWindow.webContents.send('saveFileAs');
           }
         },
         {
           label: 'save',
+          accelerator: 'CmdOrCtrl+s',
           click: function(){
             mainWindow.webContents.send('saveFile');
           }
