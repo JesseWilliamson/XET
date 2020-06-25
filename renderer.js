@@ -3,6 +3,7 @@
 var fs = require("fs");
 var insertTextAtCursor = require("insert-text-at-cursor");
 var Mousetrap = require("mousetrap")
+var savedFilePath
 // var ipcRenderer = require("electron").ipcRenderer;
 
 
@@ -20,7 +21,8 @@ WIN = remote.getCurrentWindow();
 
 // const { ipcRenderer } = window.require('electron');
 ipcRenderer.on('openFile', (event) => openFile());
-ipcRenderer.on('saveFileAs', (event) => saveFile());
+ipcRenderer.on('saveFileAs', (event) => saveFileAs());
+ipcRenderer.on('saveFile', (event) => saveFile());
 
 
 
@@ -89,24 +91,28 @@ async function openFile() {
   const paths = remote.dialog.showOpenDialogSync(WIN, {
     properties: ["openFile", "multiSelections"],
   });
+  savedFilePath = paths[0];
   console.log(paths[0]);
   readFile(paths[0]);
 }
 
-async function saveFile(){
+async function saveFileAs(){
   var content = document.getElementById("content").value;
   console.log("Save button");
   let { filePath } = await remote.dialog.showSaveDialog({
     buttonlabel: "Save file",
   });
-  console.log(filePath);
+  
+  savedFilePath = filePath
   fs.writeFile(filePath, content, () => console.log("we done fam"));
   console.log("saved sucessfully!");
   console.log(content);
 }
 
-document.getElementById("save").onclick = saveFile;
-document.getElementById("open").onclick = openFile;
+async function saveFile(){
+  var content = document.getElementById("content").value;
+  fs.writeFile(savedFilePath, content, () => console.log("we done fam"));
+}
 
 
 

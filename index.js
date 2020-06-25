@@ -38,6 +38,12 @@ app.on('ready', function(){
           click: function(){
             mainWindow.webContents.send('saveFileAs');
           }
+        },
+        {
+          label: 'save',
+          click: function(){
+            mainWindow.webContents.send('saveFile');
+          }
         }
       ]
     }
