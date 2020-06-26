@@ -8,7 +8,6 @@ function readFile(filepath) {
         console.log("error");
         return;
       }
-      console.log(data);
       content.value = data;
       wordScan()
     });
@@ -20,20 +19,19 @@ async function openFile() {
       properties: ["openFile", "multiSelections"],
     });
     savedFilePath = paths[0];
-    console.log(paths[0]);
+    console.log('opening: '+paths[0]);
     readFile(paths[0]);
 
 }
 
 async function saveFileAs(){
     var content = document.getElementById("content").value;
-    console.log("Save button");
     let { filePath } = await remote.dialog.showSaveDialog({
       buttonlabel: "Save file",
     });
     
     savedFilePath = filePath
-    fs.writeFile(filePath, content, () => console.log("we done fam"));
+    fs.writeFile(filePath, content, () => console.log("Saved File"));
     console.log("saved sucessfully!");
     console.log(content);
 }
@@ -41,7 +39,7 @@ async function saveFileAs(){
 async function saveFile(){
   if (savedFilePath != null) {
     var content = document.getElementById("content").value;
-    fs.writeFile(savedFilePath, content, () => console.log("we done fam"));
+    fs.writeFile(savedFilePath, content, () => console.log("Saved File"));
   } else {
     saveFileAs()
   }
