@@ -5,8 +5,8 @@ let mainWindow = null;
 const createMainWindow = () => {
   mainWindow = new BrowserWindow({
     backgroundColor: '#FFF',
-    width: 800,
-    height: 600,
+    width: 1000,
+    height: 700,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true
