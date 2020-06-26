@@ -32,8 +32,6 @@ async function saveFileAs(){
     
     savedFilePath = filePath
     fs.writeFile(filePath, content, () => console.log("Saved File"));
-    console.log("saved sucessfully!");
-    console.log(content);
 }
   
 async function saveFile(){
