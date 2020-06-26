@@ -9,6 +9,7 @@
   "license": "ISC",
   "dependencies": {
     "electron": "^9.0.4",
+    "electron-find": "^1.0.6",
     "electron-json-storage": "^4.1.8",
     "fs": "0.0.1-security",
     "insert-text-at-cursor": "^0.3.0",

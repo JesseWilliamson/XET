@@ -2,6 +2,9 @@ var fs = require("fs");
 var insertTextAtCursor = require("insert-text-at-cursor")
 
 
+const { FindInPage } = require('electron-find')
+
+
 const { remote, ipcRenderer } = require('electron')
 WIN = remote.getCurrentWindow();
 
@@ -13,6 +16,12 @@ window.$ = window.jQuery = require('jquery');
 
 var region = 'en-AU';
 var d = new Date();
+
+let findInPage = new FindInPage(remote.getCurrentWebContents())
+
+shortcut.add("Ctrl+f",function() {
+  findInPage.openFindWindow()
+});
 
 shortcut.add("Ctrl+d",function() {
   el=document.getElementById("content");
