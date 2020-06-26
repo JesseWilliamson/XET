@@ -1,5 +1,6 @@
 var fs = require("fs");
 var savedFilePath
+window.$ = window.jQuery = require('jquery');
 
 function readFile(filepath) {
     fs.readFile(filepath, "utf-8", (err, data) => {
@@ -9,6 +10,7 @@ function readFile(filepath) {
       }
       console.log(data);
       content.value = data;
+      wordScan()
     });
 }
 
@@ -20,6 +22,7 @@ async function openFile() {
     savedFilePath = paths[0];
     console.log(paths[0]);
     readFile(paths[0]);
+
 }
 
 async function saveFileAs(){
@@ -39,4 +42,3 @@ async function saveFile(){
     var content = document.getElementById("content").value;
     fs.writeFile(savedFilePath, content, () => console.log("we done fam"));
 }
-  
