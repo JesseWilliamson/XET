@@ -11,9 +11,17 @@ ipcRenderer.on('saveFile', (event) => saveFile());
 
 window.$ = window.jQuery = require('jquery');
 
-shortcut.add("Ctrl+e",function() {
+var region = 'en-AU';
+var d = new Date();
+
+shortcut.add("Ctrl+d",function() {
   el=document.getElementById("content");
-  insertTextAtCursor(el, 'foobar');
+  insertTextAtCursor(el, d.toLocaleDateString(region));
+});
+
+shortcut.add("Ctrl+shift+d",function() {
+  el=document.getElementById("content");
+  insertTextAtCursor(el, d.toLocaleString(region));
 });
 
 function wordScan() {
