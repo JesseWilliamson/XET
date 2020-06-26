@@ -39,6 +39,11 @@ async function saveFileAs(){
 }
   
 async function saveFile(){
+  if (savedFilePath != null) {
     var content = document.getElementById("content").value;
     fs.writeFile(savedFilePath, content, () => console.log("we done fam"));
+  } else {
+    saveFileAs()
+  }
+
 }
