@@ -13,28 +13,32 @@ const createMainWindow = () => {
       enableRemoteModule: true
     }
   });
+
+  // and load the index.html of the app.
+  mainWindow.loadFile('index.html')
+
+  mainWindow.webContents.openDevTools({ mode: 'detach' });
+
+}
+
+const createPrefWindow = () => {
   prefWindow = new BrowserWindow({
     width: 800,
     height: 500,
     parent: mainWindow,
     modal: true,
-    show: false,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true
     }
   });
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
   prefWindow.loadFile('preferences.html')
 
-  mainWindow.webContents.openDevTools({ mode: 'detach' });
-  
-
+  prefWindow.webContents.openDevTools({ mode: 'detach' });
 }
 
 app.whenReady().then(createMainWindow) 
-
 
 
 
@@ -67,7 +71,7 @@ app.on('ready', function(){
         {
           label: 'Preferences',
           click: function(){
-            prefWindow.show()
+            createPrefWindow()
           }
         }
       ]

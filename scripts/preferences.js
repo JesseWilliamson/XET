@@ -1,19 +1,45 @@
-import settings from 'electron-settings';
-WIN = remote.getCurrentWindow();
+// const { remote, electron } = require('electron')
+// const ElectronPrefs = require('electron-prefs');
+// const { copyFileSync } = require('fs');
+
+// // import settings from 'electron-settings';
+// WIN = remote.getCurrentWindow();
+// WIN.removeMenu()
 
 
-win.removeMenu()
+
+document.getElementById("red").onclick = rbutton;
+
+function rbutton() {
+  console.log('epic');
+}
+
+
+// const prefs = new ElectronPrefs({
+//   fileName: "config.js",
+//   defaults: {
+//     window: {
+//       width: 600,
+//       height: 300
+//     }
+//   }
+// });
  
-await settings.set('color', {
-  name: 'cerulean',
-  code: {
-    rgb: [0, 179, 230],
-    hex: '#003BE6'
-  }
-});
+// prefs.set('foo', 'bar');
+// console.log(prefs.get('foo'));
+// //=> bar
  
-await settings.get('color.name');
-// => "cerulean"
+// console.log(prefs.get("window"));
+// //=> { width: 600, height: 300 }
  
-await settings.get('color.code.rgb[1]');
-// => 179
+// // use dot-notation to access nested properties
+// prefs.set('window.width', 700);
+// console.log(prefs.get("window"));
+// //=> { width: 700, height: 300 }
+// console.log(prefs.get('window.width'));
+// //=> 700
+ 
+// prefs.delete('foo');
+// console.log(prefs.get('foo'));
+// //=> undefined
+ 
