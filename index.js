@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain, Menu } = require('electron')
 
-let mainWindow = null;
+let mainWindow;
+let prefWindow;
 
 const createMainWindow = () => {
   mainWindow = new BrowserWindow({
@@ -12,14 +13,29 @@ const createMainWindow = () => {
       enableRemoteModule: true
     }
   });
+  prefWindow = new BrowserWindow({
+    width: 800,
+    height: 500,
+    parent: mainWindow,
+    modal: true,
+    show: false,
+    webPreferences: {
+      nodeIntegration: true,
+      enableRemoteModule: true
+    }
+  });
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
+  prefWindow.loadFile('preferences.html')
+
   mainWindow.webContents.openDevTools({ mode: 'detach' });
   
 
 }
 
 app.whenReady().then(createMainWindow) 
+
+
 
 
 app.on('ready', function(){
@@ -42,12 +58,18 @@ app.on('ready', function(){
           }
         },
         {
-          label: 'save',
+          label: 'Save',
           accelerator: 'CmdOrCtrl+s',
           click: function(){
             mainWindow.webContents.send('saveFile');
           }
-        }
+        },
+        // {
+        //   label: 'Preferences',
+        //   click: function(){
+        //     prefWindow.show()
+        //   }
+        // }
       ]
     }
   ]
