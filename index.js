@@ -64,12 +64,12 @@ app.on('ready', function(){
             mainWindow.webContents.send('saveFile');
           }
         },
-        // {
-        //   label: 'Preferences',
-        //   click: function(){
-        //     prefWindow.show()
-        //   }
-        // }
+        {
+          label: 'Preferences',
+          click: function(){
+            prefWindow.show()
+          }
+        }
       ]
     }
   ]
