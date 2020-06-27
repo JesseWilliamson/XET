@@ -8,7 +8,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "electron": "^9.0.4",
     "electron-find": "^1.0.6",
     "electron-json-storage": "^4.1.8",
     "fs": "0.0.1-security",
@@ -16,5 +15,10 @@
     "jquery": "^3.5.1",
     "mousetrap": "^1.6.5"
   },
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "electron": "^9.0.4",
+    "electron-packager": "^14.2.1"
+
+  }
 }
