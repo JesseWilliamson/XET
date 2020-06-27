@@ -8,7 +8,7 @@
   border-collapse: collapse;
   outline: none;
   border: 0px;
-  
+  background-color: var(--footer-color)
 }
 
 .grid-container {
@@ -50,3 +50,6 @@ ul {
   background-color: #dfdfdf;
   border-radius: 10px;
 }
+
+
+

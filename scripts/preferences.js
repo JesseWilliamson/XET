@@ -6,6 +6,21 @@ const { copyFileSync } = require('fs');
 WIN = remote.getCurrentWindow();
 WIN.removeMenu()
 
+
+// // get variable from inline style
+// textbox.style.getPropertyValue("--my-var");
+
+
+// var input = document.getElementById('colourinput')
+
+
+// input.addEventListener('change', function(){
+//   textbox.style.setProperty('--footer-color', input.value)
+// })
+
+
+
+
 const prefs = new ElectronPrefs({
   fileName: "config.js",
   defaults: {
@@ -16,35 +31,44 @@ const prefs = new ElectronPrefs({
   }
 });
 
-document.getElementById("red").onclick = rbutton;
+// document.getElementById("red").onclick = rbutton;
 
-function rbutton() {
+// function rbutton() {
    
-  prefs.set('primary', 'red');
-  console.log(prefs.get('primary'));
+//   prefs.set('primary', 'red');
+//   console.log(prefs.get('primary'));
+
+
+//   textbox.style.setProperty("--my-var", 'red');
   
-}
+// }
 
 
 
-document.getElementById("blue").onclick = bbutton;
+// document.getElementById("blue").onclick = bbutton;
 
-function bbutton() {
+// function bbutton() {
 
 
    
-  prefs.set('primary', 'blue');
-  console.log(prefs.get('primary'));
+//   prefs.set('primary', 'blue');
+//   console.log(prefs.get('primary'));
+
+//   textbox.style.setProperty("--my-var", 'blue');
   
-}
+// }
 
 
-
+let tc = getComputedStyle(document.documentElement).getPropertyValue('--footer-color');
 
 document.getElementById("check").onclick = cbutton;
 
 function cbutton() {
 
   console.log(prefs.get('primary'));
-  
+  console.log(tc)
+  document.documentElement.style.setProperty('--footer-color', 'red');
 }
+
+
+
