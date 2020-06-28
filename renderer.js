@@ -1,18 +1,22 @@
 var fs = require("fs");
 var insertTextAtCursor = require("insert-text-at-cursor")
-
-
 const { FindInPage } = require('electron-find')
-
-
+var ElectronPrefs = require("electron-prefs")
 const { remote, ipcRenderer } = require('electron')
+const reload = require('electron-css-reload');
 WIN = remote.getCurrentWindow();
 
 ipcRenderer.on('openFile', (event) => openFile());
 ipcRenderer.on('saveFileAs', (event) => saveFileAs());
 ipcRenderer.on('saveFile', (event) => saveFile());
+ipcRenderer.on('prefsUpdate', (event) => prefsUpdate());
+
+
 
 window.$ = window.jQuery = require('jquery');
+
+const prefs = new ElectronPrefs({fileName: "config.js"});
+document.documentElement.style.setProperty('--footer-color', prefs.get('primary'));
 
 var region = 'en-AU';
 var d = new Date();
@@ -62,3 +66,24 @@ $("#content").on("change keyup paste", function() {
     wordScan()
 });
 
+
+
+const Store = require('electron-store');
+ 
+const store = new Store();
+ 
+
+
+
+ 
+
+function prefsUpdate() {
+  // // reload()
+  // document.documentElement.style.setProperty('--footer-color', prefs.get('primary'));
+  // // console.log('shit')
+  // console.log(prefs.get('primary'))
+
+  // // WIN.reload()
+  console.log(store.get('unicorn'));
+  document.documentElement.style.setProperty('--footer-color', store.get('unicorn'));
+};

@@ -8,10 +8,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "electron-css-reload": "^1.0.8",
     "electron-find": "^1.0.6",
     "electron-json-storage": "^4.1.8",
     "electron-prefs": "^1.0.7",
-    "electron-settings": "^4.0.1",
+    "electron-settings": "^4.0.2",
+    "electron-store": "^5.2.0",
     "fs": "0.0.1-security",
     "insert-text-at-cursor": "^0.3.0",
     "jquery": "^3.5.1",

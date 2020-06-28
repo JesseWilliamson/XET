@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain, Menu } = require('electron')
 
+
 let mainWindow;
 let prefWindow;
 
@@ -79,4 +80,10 @@ app.on('ready', function(){
   ]
   const menu = Menu.buildFromTemplate(template)
   Menu.setApplicationMenu(menu)
+})
+
+ipcMain.on('prefsUpdate', (event, arg) => {
+  console.log('yeet')
+  mainWindow.webContents.send('prefsUpdate');
+  event.returnValue = "received";
 })
