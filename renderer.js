@@ -3,18 +3,23 @@ var insertTextAtCursor = require("insert-text-at-cursor")
 const { FindInPage } = require('electron-find')
 const { remote, ipcRenderer } = require('electron')
 const reload = require('electron-css-reload');
+const Store = require('electron-store');
+const store = new Store();
 WIN = remote.getCurrentWindow();
 
 ipcRenderer.on('openFile', (event) => openFile());
 ipcRenderer.on('saveFileAs', (event) => saveFileAs());
 ipcRenderer.on('saveFile', (event) => saveFile());
-ipcRenderer.on('prefsUpdate', (event) => prefsUpdate());
-
+ipcRenderer.on('secondaryPrefsUpdate', (event) => secondaryPrefsUpdate());
+ipcRenderer.on('primaryPrefsUpdate', (event) => primaryPrefsUpdate());
+ipcRenderer.on('textPrefsUpdate', (event) => textPrefsUpdate());
 
 
 window.$ = window.jQuery = require('jquery');
 
-
+document.documentElement.style.setProperty('--primary', store.get('primaryColor'));
+document.documentElement.style.setProperty('--secondary', store.get('secondaryColor'));
+document.documentElement.style.setProperty('--text', store.get('textColor'));
 
 var region = 'en-AU';
 var d = new Date();
@@ -66,22 +71,24 @@ $("#content").on("change keyup paste", function() {
 
 
 
-const Store = require('electron-store');
- 
-const store = new Store();
- 
-
-document.documentElement.style.setProperty('--footer-color', store.get('secondaryColor'));
 
  
 
-function prefsUpdate() {
-  // // reload()
-  // document.documentElement.style.setProperty('--footer-color', prefs.get('primary'));
-  // // console.log('shit')
-  // console.log(prefs.get('primary'))
+  
+ 
 
-  // // WIN.reload()
+function secondaryPrefsUpdate() {
   console.log(store.get('secondaryColor'));
-  document.documentElement.style.setProperty('--footer-color', store.get('secondaryColor'));
+  document.documentElement.style.setProperty('--secondary', store.get('secondaryColor'));
+};
+
+function primaryPrefsUpdate() {
+  console.log(store.get('primaryColor'));
+  document.documentElement.style.setProperty('--primary', store.get('primaryColor'));
+};
+
+function textPrefsUpdate() {
+  console.log(store.get('textColor'));
+  document.documentElement.style.setProperty('--text', store.get('textColor'));
+  console.log('textin')
 };

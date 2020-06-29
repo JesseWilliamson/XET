@@ -8,8 +8,15 @@
   border-collapse: collapse;
   outline: none;
   border: 0px;
-  background-color: var(--footer-color)
+  background-color: var(--secondary);
+  color: var(--text);
 }
+
+body{
+  background-color: var(--primary);
+  color: var(--text);
+}
+
 
 .grid-container {
   display: grid;
@@ -33,6 +40,7 @@
 
 ul {
   list-style-type: none;
+  color: var(--text);
 }
 
 /* Scroll 1 */

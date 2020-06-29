@@ -10,54 +10,27 @@ WIN.removeMenu()
 const Store = require('electron-store');
 const store = new Store();
  
-document.documentElement.style.setProperty('--footer-color', store.get('secondaryColor'));
 
+
+primary = document.getElementById('primary')
 secondary = document.getElementById('secondary')
+pageText = document.getElementById('pageText')
+
+primary.value = store.get('primaryColor')
+primary.addEventListener('change', function(){
+  store.set('primaryColor', primary.value);
+  ipcRenderer.sendSync('primaryPrefsUpdate')
+})
+
 secondary.value = store.get('secondaryColor')
 secondary.addEventListener('change', function(){
   store.set('secondaryColor', secondary.value);
-   
-  ipcRenderer.sendSync ('prefsUpdate')
-  document.documentElement.style.setProperty('--footer-color', secondary.value);
+  ipcRenderer.sendSync('secondaryPrefsUpdate')
 })
 
-document.getElementById("red").onclick = rbutton;
-
-function rbutton() {
-  store.set('secondaryColor', 'red');
-   
-  ipcRenderer.sendSync ('prefsUpdate')
-  document.documentElement.style.setProperty('--footer-color', store.get('secondaryColor'));
-  
-  let tc = getComputedStyle(document.documentElement).getPropertyValue('--footer-color');
-  console.log(tc)
-}
-
-
-
-document.getElementById("blue").onclick = bbutton;
-
-function bbutton() {
-  store.set('secondaryColor', 'blue');
-   
-  ipcRenderer.sendSync ('prefsUpdate')
-  document.documentElement.style.setProperty('--footer-color', store.get('secondaryColor'));
-  
-  let tc = getComputedStyle(document.documentElement).getPropertyValue('--footer-color');
-  console.log(tc)
-}
-
-
-
-
-document.getElementById("check").onclick = cbutton;
-
-function cbutton() {
-  let tc = getComputedStyle(document.documentElement).getPropertyValue('--footer-color');
-
-  console.log(store.get('secondaryColor'));
-  console.log(tc)
-}
-
-
-
+text.value = store.get('textColor')
+text.addEventListener('change', function(){
+  store.set('textColor', text.value);
+  ipcRenderer.sendSync('textPrefsUpdate')
+  console.log('textout')
+})

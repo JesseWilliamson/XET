@@ -82,8 +82,16 @@ app.on('ready', function(){
   Menu.setApplicationMenu(menu)
 })
 
-ipcMain.on('prefsUpdate', (event, arg) => {
-  console.log('yeet')
-  mainWindow.webContents.send('prefsUpdate');
+ipcMain.on('secondaryPrefsUpdate', (event, arg) => {
+  mainWindow.webContents.send('secondaryPrefsUpdate');
   event.returnValue = "received";
+})
+ipcMain.on('primaryPrefsUpdate', (event, arg) => {
+  mainWindow.webContents.send('primaryPrefsUpdate');
+  event.returnValue = "received";
+})
+ipcMain.on('textPrefsUpdate', (event, arg) => {
+  mainWindow.webContents.send('textPrefsUpdate');
+  event.returnValue = "received";
+  console.log('textind')
 })
