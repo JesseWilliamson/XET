@@ -71,7 +71,7 @@ const Store = require('electron-store');
 const store = new Store();
  
 
-document.documentElement.style.setProperty('--footer-color', store.get('unicorn'));
+document.documentElement.style.setProperty('--footer-color', store.get('secondaryColor'));
 
  
 
@@ -82,6 +82,6 @@ function prefsUpdate() {
   // console.log(prefs.get('primary'))
 
   // // WIN.reload()
-  console.log(store.get('unicorn'));
-  document.documentElement.style.setProperty('--footer-color', store.get('unicorn'));
+  console.log(store.get('secondaryColor'));
+  document.documentElement.style.setProperty('--footer-color', store.get('secondaryColor'));
 };
