@@ -14,6 +14,8 @@ ipcRenderer.on('secondaryPrefsUpdate', (event) => secondaryPrefsUpdate());
 ipcRenderer.on('primaryPrefsUpdate', (event) => primaryPrefsUpdate());
 ipcRenderer.on('textPrefsUpdate', (event) => textPrefsUpdate());
 
+var region = 'en-AU';
+
 
 window.$ = window.jQuery = require('jquery');
 
@@ -21,8 +23,7 @@ document.documentElement.style.setProperty('--primary', store.get('primaryColor'
 document.documentElement.style.setProperty('--secondary', store.get('secondaryColor'));
 document.documentElement.style.setProperty('--text', store.get('textColor'));
 
-var region = 'en-AU';
-var d = new Date();
+
 
 let findInPage = new FindInPage(remote.getCurrentWebContents())
 
@@ -31,11 +32,13 @@ shortcut.add("Ctrl+f",function() {
 });
 
 shortcut.add("Ctrl+d",function() {
+  var d = new Date();
   el=document.getElementById("content");
   insertTextAtCursor(el, d.toLocaleDateString(region));
 });
 
 shortcut.add("Ctrl+shift+d",function() {
+  var d = new Date();
   el=document.getElementById("content");
   insertTextAtCursor(el, d.toLocaleString(region));
 });
