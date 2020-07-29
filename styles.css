@@ -1,36 +1,19 @@
-.textbox {
+/* .textbox {
   resize: none;
-  height: 90vh;
-  width: 100%;
-  overflow: auto;
-  padding: 0;
-  margin: 0;
-  border-collapse: collapse;
+  position: absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+
   outline: none;
   border: 0px;
   background-color: var(--secondary);
   color: var(--text);
 }
 
-body{
-  background-color: var(--primary);
-  color: var(--text);
-}
 
 
-.grid-container {
-  display: grid;
-  grid-template-columns: 20% 80%;
-  padding: 0;
-  margin: 0;
-  border-collapse: collapse;
-}
-
-.grid-item {
-  padding: 0;
-  margin: 0;
-  border-collapse: collapse;
-}
 
 .textButton {
   border: none;
@@ -43,7 +26,11 @@ ul {
   color: var(--text);
 }
 
-/* Scroll 1 */
+
+
+
+
+
 .sc1::-webkit-scrollbar {
   width: 0px;
   height: 0px;
@@ -60,4 +47,53 @@ ul {
 }
 
 
+ */
+
+
+ html, body, .grid-container { height: 100%; margin: 0; }
+
+ .grid-container {
+   display: grid;
+   grid-template-columns: 160px 1fr;
+   grid-template-rows: 1fr 40px;
+   gap: 1px 1px;
+   grid-template-areas: "sidebar page" "stats stats";
+ }
+ 
+ .sidebar { grid-area: sidebar; }
+ 
+ .page { grid-area: page; }
+ 
+ .stats { grid-area: stats; }
+ 
+ .grid-container * { 
+  position: relative;
+ }
+
+ 
+ .sidebar{
+     overflow: scroll;
+ }
+
+ .textbox {
+  resize: none;
+  width: 98%;
+  height: 98%;
+  outline: none;
+  border: 0px;
+  background-color: var(--secondary);
+  color: var(--text);
+}
+
+*{
+  list-style-type: none;
+  margin: 2px;
+  padding: 0;
+  background-color: var(--primary);
+  color: var(--text);
+}
+
+.sc1::-webkit-scrollbar {
+  display: none;
+}
 
