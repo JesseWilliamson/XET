@@ -38,18 +38,18 @@ shortcut.add("Ctrl+f", function () {
 
 shortcut.add("Ctrl+d", function () {
   var d = new Date();
-  el = document.getElementById("content");
+  el = document.getElementById("page");
   insertTextAtCursor(el, d.toLocaleDateString(region));
 });
 
 shortcut.add("Ctrl+shift+d", function () {
   var d = new Date();
-  el = document.getElementById("content");
+  el = document.getElementById("page");
   insertTextAtCursor(el, d.toLocaleString(region));
 });
 
 function wordScan() {
-  var content = document.getElementById("content").value;
+  var content = document.getElementById("page").value;
   var contentarr = content.split(/[\r?\n\s,\r]+/);
   var lineArr = content.split(/[\r?\n]/)
   titlearr = lineArr.filter(function (item) {
@@ -67,7 +67,7 @@ function wordScan() {
   statsBox.innerHTML = "W:" + String(contentarr.length - 1) + " " + "V:" + String(vocabulary.size - 1 + " " + "L:" + lineArr.length)
 }
 
-$("#content").on("change keyup paste", function () {
+$("#page").on("change keyup paste", function () {
   var currentVal = $(this).val();
   if (currentVal == oldVal) {
     return; //check to prevent multiple simultaneous triggers
