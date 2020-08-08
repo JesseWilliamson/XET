@@ -1,5 +1,5 @@
-const { app, BrowserWindow, ipcMain, Menu } = require('electron')
-
+const { app, BrowserWindow, ipcMain, Menu, shell } = require('electron')
+const contextMenu = require('electron-context-menu');
 
 let mainWindow;
 let prefWindow;
@@ -80,6 +80,28 @@ app.on('ready', function(){
   ]
   const menu = Menu.buildFromTemplate(template)
   Menu.setApplicationMenu(menu)
+
+
+  contextMenu({
+    prepend: (defaultActions, params, browserWindow) => [
+      {
+        label: 'Search Google for “{selection}”',
+        // Only show it when right-clicking text
+        visible: params.selectionText.trim().length > 0,
+        click: () => {
+          shell.openExternal(`https://google.com/search?q=${encodeURIComponent(params.selectionText)}`);
+        }
+      },
+      {
+        label: 'Search DuckDuckGo for “{selection}”',
+        // Only show it when right-clicking text
+        visible: params.selectionText.trim().length > 0,
+        click: () => {
+          shell.openExternal(`https://duckduckgo.com/?q=${encodeURIComponent(params.selectionText)}`);
+        }
+      }
+    ]
+  });
 })
 
 ipcMain.on('secondaryPrefsUpdate', (event, arg) => {
