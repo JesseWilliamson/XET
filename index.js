@@ -81,8 +81,11 @@ app.on('ready', function(){
   const menu = Menu.buildFromTemplate(template)
   Menu.setApplicationMenu(menu)
 
+  
+
 
   contextMenu({
+    options: (showSearchWithGoogle = false),
     prepend: (defaultActions, params, browserWindow) => [
       {
         label: 'Search Google for “{selection}”',
@@ -103,6 +106,7 @@ app.on('ready', function(){
     ]
   });
 })
+
 
 ipcMain.on('secondaryPrefsUpdate', (event, arg) => {
   mainWindow.webContents.send('secondaryPrefsUpdate');

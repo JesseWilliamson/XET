@@ -13,10 +13,6 @@ const store = new Store();
 WIN = remote.getCurrentWindow();
 
 
-query = 'hello world';
-url ='http://www.google.com/search?q=' + query;
-window.open(url,'_blank');
-
 ipcRenderer.on('openFile', (event) => openFile());
 ipcRenderer.on('saveFileAs', (event) => saveFileAs());
 ipcRenderer.on('saveFile', (event) => saveFile());

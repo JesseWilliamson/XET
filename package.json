@@ -12,7 +12,7 @@
     "electron-css-reload": "^1.0.8",
     "electron-editor-context-menu": "^1.1.1",
     "electron-find": "^1.0.6",
-    "electron-json-storage": "^4.1.8",
+    "electron-json-storage": "^4.2.0",
     "electron-prefs": "^1.0.7",
     "electron-settings": "^4.0.2",
     "electron-store": "^5.2.0",
@@ -23,7 +23,7 @@
   },
   "description": "",
   "devDependencies": {
-    "electron": "^9.0.4",
+    "electron": "^9.2.0",
     "electron-packager": "^14.2.1"
   }
 }
