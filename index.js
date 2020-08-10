@@ -17,7 +17,6 @@ const createMainWindow = () => {
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
-
 }
 
 const createPrefWindow = () => {
@@ -33,8 +32,6 @@ const createPrefWindow = () => {
   });
   // and load the index.html of the app.
   prefWindow.loadFile('preferences.html')
-
-  prefWindow.webContents.openDevTools({ mode: 'detach' });
 }
 
 app.whenReady().then(createMainWindow) 
