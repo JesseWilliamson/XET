@@ -8,13 +8,13 @@ function readFile(filepath) {
         console.log("error");
         return;
       }
-      content.value = data;
+      document.getElementById("page").value = data;
       wordScan()
     });
 }
 
 async function openFile() {
-    var content = document.getElementById("content").value;
+    var content = document.getElementById("page").value;
     const paths = remote.dialog.showOpenDialogSync(WIN, {
       properties: ["openFile", "multiSelections"],
     });
@@ -25,7 +25,7 @@ async function openFile() {
 }
 
 async function saveFileAs(){
-    var content = document.getElementById("content").value;
+    var content = document.getElementById("page").value;
     let { filePath } = await remote.dialog.showSaveDialog({
       buttonlabel: "Save file",
     });
@@ -36,7 +36,7 @@ async function saveFileAs(){
   
 async function saveFile(){
   if (savedFilePath != null) {
-    var content = document.getElementById("content").value;
+    var content = document.getElementById("page").value;
     fs.writeFile(savedFilePath, content, () => console.log("Saved File"));
   } else {
     saveFileAs()
