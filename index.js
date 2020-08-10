@@ -18,8 +18,6 @@ const createMainWindow = () => {
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
 
-  mainWindow.webContents.openDevTools({ mode: 'detach' });
-
 }
 
 const createPrefWindow = () => {

@@ -2,8 +2,13 @@
   "name": "groundup",
   "version": "1.0.0",
   "main": "index.js",
+  "build": {
+    "appId": "your.id"
+  },
   "scripts": {
-    "start": "electron index.js"
+    "start": "electron index.js",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "author": "",
   "license": "ISC",
@@ -24,6 +29,7 @@
   "description": "",
   "devDependencies": {
     "electron": "^9.2.0",
+    "electron-builder": "^22.8.0",
     "electron-packager": "^14.2.1"
   }
 }
