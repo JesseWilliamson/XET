@@ -7,7 +7,6 @@ const {
   remote,
   ipcRenderer
 } = require('electron')
-const reload = require('electron-css-reload');
 const Store = require('electron-store');
 const store = new Store();
 WIN = remote.getCurrentWindow();

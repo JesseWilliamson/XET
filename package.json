@@ -14,17 +14,12 @@
   "license": "ISC",
   "dependencies": {
     "electron-context-menu": "^2.3.0",
-    "electron-css-reload": "^1.0.8",
     "electron-editor-context-menu": "^1.1.1",
     "electron-find": "^1.0.6",
-    "electron-json-storage": "^4.2.0",
-    "electron-prefs": "^1.0.7",
-    "electron-settings": "^4.0.2",
     "electron-store": "^5.2.0",
     "fs": "0.0.1-security",
     "insert-text-at-cursor": "^0.3.0",
-    "jquery": "^3.5.1",
-    "mousetrap": "^1.6.5"
+    "jquery": "^3.5.1"
   },
   "description": "",
   "devDependencies": {
