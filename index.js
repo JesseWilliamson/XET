@@ -19,6 +19,8 @@ const createMainWindow = () => {
   mainWindow.loadFile('index.html')
 }
 
+
+
 const createPrefWindow = () => {
   prefWindow = new BrowserWindow({
     width: 800,
@@ -45,6 +47,7 @@ app.on('ready', function(){
       submenu: [ 
         {
           label: 'Open',
+          accelerator: 'CmdOrCtrl+o',
           click: function(){
             mainWindow.webContents.send('openFile');
           }
@@ -63,7 +66,12 @@ app.on('ready', function(){
           click: function(){
             mainWindow.webContents.send('saveFile');
           }
-        },
+        }
+      ]
+    },
+    {
+      label: 'Edit',
+      submenu: [ 
         {
           label: 'Preferences',
           click: function(){
@@ -71,8 +79,29 @@ app.on('ready', function(){
           }
         }
       ]
+    },
+    {
+      label: 'Insert',
+      submenu: [ 
+        {
+          label: 'Date',
+          accelerator: 'CmdOrCtrl+d',
+          click: function(){
+            mainWindow.webContents.send('insertDate');
+          }
+        },
+        {
+          label: 'Date and Time',
+          accelerator: 'CmdOrCtrl+shift+d',
+          click: function(){
+            mainWindow.webContents.send('insertDateAndTime');
+          }
+        }
+      ]
     }
   ]
+
+
   const menu = Menu.buildFromTemplate(template)
   Menu.setApplicationMenu(menu)
 

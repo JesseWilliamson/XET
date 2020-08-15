@@ -1,5 +1,5 @@
 var fs = require("fs");
-var insertTextAtCursor = require("insert-text-at-cursor")
+
 const {
   FindInPage
 } = require('electron-find')
@@ -11,7 +11,7 @@ const Store = require('electron-store');
 const store = new Store();
 WIN = remote.getCurrentWindow();
 
-
+// Recieve messages from the menu or prefs window, passed through the main process
 ipcRenderer.on('openFile', (event) => openFile());
 ipcRenderer.on('saveFileAs', (event) => saveFileAs());
 ipcRenderer.on('saveFile', (event) => saveFile());
@@ -19,14 +19,20 @@ ipcRenderer.on('secondaryPrefsUpdate', (event) => secondaryPrefsUpdate());
 ipcRenderer.on('primaryPrefsUpdate', (event) => primaryPrefsUpdate());
 ipcRenderer.on('textPrefsUpdate', (event) => textPrefsUpdate());
 
-var region = 'en-AU';
+ipcRenderer.on('insertDate', (event) => insertDate());
+ipcRenderer.on('insertDateAndTime', (event) => insertDateAndTime());
+
+// Set document styles based on user preferences 
+document.documentElement.style.setProperty('--primary', store.get('primaryColor'));
+document.documentElement.style.setProperty('--secondary', store.get('secondaryColor'));
+document.documentElement.style.setProperty('--text', store.get('textColor'));
+
+
 
 
 window.$ = window.jQuery = require('jquery');
 
-document.documentElement.style.setProperty('--primary', store.get('primaryColor'));
-document.documentElement.style.setProperty('--secondary', store.get('secondaryColor'));
-document.documentElement.style.setProperty('--text', store.get('textColor'));
+
 
 
 
@@ -36,17 +42,7 @@ shortcut.add("Ctrl+f", function () {
   findInPage.openFindWindow()
 });
 
-shortcut.add("Ctrl+d", function () {
-  var d = new Date();
-  el = document.getElementById("page");
-  insertTextAtCursor(el, d.toLocaleDateString(region));
-});
 
-shortcut.add("Ctrl+shift+d", function () {
-  var d = new Date();
-  el = document.getElementById("page");
-  insertTextAtCursor(el, d.toLocaleString(region));
-});
 
 function wordScan() {
   var content = document.getElementById("page").value;

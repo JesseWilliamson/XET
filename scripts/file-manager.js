@@ -35,7 +35,7 @@ async function saveFileAs(){
 }
   
 async function saveFile(){
-  if (savedFilePath != null) {
+  if (savedFilePath) {
     var content = document.getElementById("page").value;
     fs.writeFile(savedFilePath, content, () => console.log("Saved File"));
   } else {
