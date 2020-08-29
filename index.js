@@ -109,7 +109,8 @@ app.on('ready', function(){
 
 
   contextMenu({
-    options: (showSearchWithGoogle = false),
+    showSearchWithGoogle: false,
+    // options: (showSearchWithGoogle = false),
     prepend: (defaultActions, params, browserWindow) => [
       {
         label: 'Search Google for “{selection}”',
