@@ -22,7 +22,7 @@
   },
   "description": "",
   "devDependencies": {
-    "electron": "^9.2.0",
+    "electron": "9.2.1",
     "electron-builder": "^22.8.0",
     "electron-packager": "^14.2.1"
   }
