@@ -36,11 +36,11 @@ window.$ = window.jQuery = require('jquery');
 
 
 
-let findInPage = new FindInPage(remote.getCurrentWebContents())
+// let findInPage = new FindInPage(remote.getCurrentWebContents())
 
-shortcut.add("Ctrl+f", function () {
-  findInPage.openFindWindow()
-});
+// shortcut.add("Ctrl+f", function () {
+//   findInPage.openFindWindow()
+// });
 
 
 
