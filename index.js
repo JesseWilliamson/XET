@@ -137,6 +137,10 @@ ipcMain.on('secondaryPrefsUpdate', (event, arg) => {
   mainWindow.webContents.send('secondaryPrefsUpdate');
   event.returnValue = "received";
 })
+ipcMain.on('accentPrefsUpdate', (event, arg) => {
+  mainWindow.webContents.send('accentPrefsUpdate');
+  event.returnValue = "received";
+})
 ipcMain.on('primaryPrefsUpdate', (event, arg) => {
   mainWindow.webContents.send('primaryPrefsUpdate');
   event.returnValue = "received";
@@ -144,5 +148,21 @@ ipcMain.on('primaryPrefsUpdate', (event, arg) => {
 ipcMain.on('textPrefsUpdate', (event, arg) => {
   mainWindow.webContents.send('textPrefsUpdate');
   event.returnValue = "received";
-  console.log('textind')
+})
+
+
+
+
+
+ipcMain.on('scrollbarBackgroundColorPrefsUpdate', (event, arg) => {
+  mainWindow.webContents.send('scrollbarBackgroundColorPrefsUpdate');
+  event.returnValue = "received";
+})
+ipcMain.on('scrollbarThumbColorPrefsUpdate', (event, arg) => {
+  mainWindow.webContents.send('scrollbarThumbColorPrefsUpdate');
+  event.returnValue = "received";
+})
+ipcMain.on('scrollbarWidthPrefsUpdate', (event, arg) => {
+  mainWindow.webContents.send('scrollbarWidthPrefsUpdate');
+  event.returnValue = "received";
 })

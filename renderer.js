@@ -16,8 +16,13 @@ ipcRenderer.on('openFile', (event) => openFile());
 ipcRenderer.on('saveFileAs', (event) => saveFileAs());
 ipcRenderer.on('saveFile', (event) => saveFile());
 ipcRenderer.on('secondaryPrefsUpdate', (event) => secondaryPrefsUpdate());
+ipcRenderer.on('accentPrefsUpdate', (event) => accentPrefsUpdate());
 ipcRenderer.on('primaryPrefsUpdate', (event) => primaryPrefsUpdate());
 ipcRenderer.on('textPrefsUpdate', (event) => textPrefsUpdate());
+
+ipcRenderer.on('scrollbarWidthPrefsUpdate', (event) => scrollbarWidthPrefsUpdate());
+ipcRenderer.on('scrollbarThumbColorPrefsUpdate', (event) => scrollbarThumbColorPrefsUpdate());
+ipcRenderer.on('scrollbarBackgroundColorPrefsUpdate', (event) => scrollbarBackgroundColorPrefsUpdate());
 
 ipcRenderer.on('insertDate', (event) => insertDate());
 ipcRenderer.on('insertDateAndTime', (event) => insertDateAndTime());
@@ -25,7 +30,9 @@ ipcRenderer.on('insertDateAndTime', (event) => insertDateAndTime());
 // Set document styles based on user preferences 
 document.documentElement.style.setProperty('--primary', store.get('primaryColor'));
 document.documentElement.style.setProperty('--secondary', store.get('secondaryColor'));
+document.documentElement.style.setProperty('--accent', store.get('accentColor'));
 document.documentElement.style.setProperty('--text', store.get('textColor'));
+
 
 
 
@@ -91,8 +98,31 @@ function primaryPrefsUpdate() {
   document.documentElement.style.setProperty('--primary', store.get('primaryColor'));
 };
 
+function accentPrefsUpdate() {
+  console.log(store.get('accentColor'));
+  document.documentElement.style.setProperty('--accent', store.get('accentColor'));
+};
+
 function textPrefsUpdate() {
   console.log(store.get('textColor'));
   document.documentElement.style.setProperty('--text', store.get('textColor'));
-  console.log('textin')
+};
+
+
+
+
+
+function scrollbarWidthPrefsUpdate() {
+  console.log(store.get('storeScrollbarWidth'));
+  document.documentElement.style.setProperty('--scrollbarWidth', (store.get('storeScrollbarWidth'));
+};
+
+function scrollbarThumbColorPrefsUpdate() {
+  console.log(store.get('storeScrollbarThumbColor'));
+  document.documentElement.style.setProperty('--scrollbarThumbColor', store.get('storeScrollbarThumbColor'));
+};
+
+function scrollbarBackgroundColorPrefsUpdate() {
+  console.log(store.get('storeScrollbarBackgroundColor'));
+  document.documentElement.style.setProperty('--scrollbarBackgroundColor', store.get('storeScrollbarBackgroundColor'));
 };
