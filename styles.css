@@ -59,7 +59,8 @@
 
 .scrollbar::-webkit-scrollbar {
   /* width: var(--scrollbarWidth)px; */
-  width: var(--scrollbarWidth)px;
+  /* width: calc(var(--scrollBarWidth) * 1); */
+  width: calc(var(--scrollbarWidth)* 1px);
   background-color: var(--scrollbarBackgroundColor);
 } 
 

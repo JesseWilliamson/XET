@@ -24,6 +24,8 @@ ipcRenderer.on('scrollbarWidthPrefsUpdate', (event) => scrollbarWidthPrefsUpdate
 ipcRenderer.on('scrollbarThumbColorPrefsUpdate', (event) => scrollbarThumbColorPrefsUpdate());
 ipcRenderer.on('scrollbarBackgroundColorPrefsUpdate', (event) => scrollbarBackgroundColorPrefsUpdate());
 
+ipcRenderer.on('fontSizePrefsUpdate', (event) => fontSizePrefsUpdate());
+
 ipcRenderer.on('insertDate', (event) => insertDate());
 ipcRenderer.on('insertDateAndTime', (event) => insertDateAndTime());
 
@@ -32,6 +34,12 @@ document.documentElement.style.setProperty('--primary', store.get('primaryColor'
 document.documentElement.style.setProperty('--secondary', store.get('secondaryColor'));
 document.documentElement.style.setProperty('--accent', store.get('accentColor'));
 document.documentElement.style.setProperty('--text', store.get('textColor'));
+
+document.documentElement.style.setProperty('--scrollbarBackgroundColor', store.get('storeScrollbarBackgroundColor'));
+document.documentElement.style.setProperty('--scrollbarThumbColor', store.get('storeScrollbarThumbColor'));
+document.documentElement.style.setProperty('--scrollbarWidth', store.get('storeScrollbarWidth'));
+
+document.documentElement.style.setProperty('--fontSize', store.get('storeFontSize'));
 
 
 
@@ -92,17 +100,14 @@ function secondaryPrefsUpdate() {
   console.log(store.get('secondaryColor'));
   document.documentElement.style.setProperty('--secondary', store.get('secondaryColor'));
 };
-
 function primaryPrefsUpdate() {
   console.log(store.get('primaryColor'));
   document.documentElement.style.setProperty('--primary', store.get('primaryColor'));
 };
-
 function accentPrefsUpdate() {
   console.log(store.get('accentColor'));
   document.documentElement.style.setProperty('--accent', store.get('accentColor'));
 };
-
 function textPrefsUpdate() {
   console.log(store.get('textColor'));
   document.documentElement.style.setProperty('--text', store.get('textColor'));
@@ -110,19 +115,22 @@ function textPrefsUpdate() {
 
 
 
-
-
 function scrollbarWidthPrefsUpdate() {
   console.log(store.get('storeScrollbarWidth'));
-  document.documentElement.style.setProperty('--scrollbarWidth', (store.get('storeScrollbarWidth'));
+  document.documentElement.style.setProperty('--scrollbarWidth', store.get('storeScrollbarWidth'));
 };
-
 function scrollbarThumbColorPrefsUpdate() {
   console.log(store.get('storeScrollbarThumbColor'));
   document.documentElement.style.setProperty('--scrollbarThumbColor', store.get('storeScrollbarThumbColor'));
 };
-
 function scrollbarBackgroundColorPrefsUpdate() {
   console.log(store.get('storeScrollbarBackgroundColor'));
   document.documentElement.style.setProperty('--scrollbarBackgroundColor', store.get('storeScrollbarBackgroundColor'));
+};
+
+
+
+function fontSizePrefsUpdate() {
+  console.log(store.get('storeFontSize'));
+  document.documentElement.style.setProperty('--fontSize', store.get('storeFontSize'));
 };
