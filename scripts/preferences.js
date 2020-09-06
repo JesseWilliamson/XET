@@ -49,16 +49,23 @@ primary = document.getElementById('primary')
 secondary = document.getElementById('secondary')
 accent = document.getElementById('accent')
 pageText = document.getElementById('pageText')
+
 scrollbarBackgroundColor = document.getElementById('scrollbarBackgroundColor')
 scrollbarThumbColor = document.getElementById('scrollbarThumbColor')
 scrollbarWidth = document.getElementById('scrollbarWidth')
+
+fontSize = document.getElementById('fontSize')
+
 document.documentElement.style.setProperty('--primary', store.get('primaryColor'));
 document.documentElement.style.setProperty('--secondary', store.get('secondaryColor'));
 document.documentElement.style.setProperty('--accent', store.get('accentColor'));
 document.documentElement.style.setProperty('--text', store.get('textColor'));
+
 document.documentElement.style.setProperty('--scrollbarBackgroundColor', store.get('storeScrollbarBackgroundColor'));
 document.documentElement.style.setProperty('--scrollbarThumbColor', store.get('storeScrollbarThumbColor'));
 document.documentElement.style.setProperty('--scrollbarWidth', store.get('storeScrollbarWidth'));
+
+document.documentElement.style.setProperty('--fontSize', store.get('storeFontSize'));
 
 
 uregion.value = store.get('suregion')
@@ -104,12 +111,14 @@ scrollbarBackgroundColor.value = store.get('storeScrollbarBackgroundColor')
 scrollbarBackgroundColor.addEventListener('change', function () {
   store.set('storeScrollbarBackgroundColor', scrollbarBackgroundColor.value);
   ipcRenderer.sendSync('scrollbarBackgroundColorPrefsUpdate')
+  document.documentElement.style.setProperty('--scrollbarBackgroundColor', store.get('storeScrollbarBackgroundColor'));
 })
 
 scrollbarThumbColor.value = store.get('storeScrollbarThumbColor')
 scrollbarThumbColor.addEventListener('change', function () {
   store.set('storeScrollbarThumbColor', scrollbarThumbColor.value);
   ipcRenderer.sendSync('scrollbarThumbColorPrefsUpdate')
+  document.documentElement.style.setProperty('--scrollbarThumbColor', store.get('storeScrollbarThumbColor'));
 })
 
 
@@ -117,4 +126,16 @@ scrollbarWidth.value = store.get('storeScrollbarWidth')
 scrollbarWidth.addEventListener('change', function () {
   store.set('storeScrollbarWidth', scrollbarWidth.value);
   ipcRenderer.sendSync('scrollbarWidthPrefsUpdate')
+  document.documentElement.style.setProperty('--scrollbarWidth', store.get('storeScrollbarWidth'));
 })
+
+
+
+
+fontSize.value = store.get('storeFontSize')
+fontSize.addEventListener('change', function () {
+  store.set('storeFontSize', fontSize.value);
+  ipcRenderer.sendSync('fontSizePrefsUpdate')
+  document.documentElement.style.setProperty('--fontSize', store.get('storeFontSize'));
+})
+

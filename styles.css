@@ -50,6 +50,7 @@
    padding: 0;
    background-color: var(--primary);
    color: var(--text);
+   font-size: calc(var(--fontSize)*1pt);
  }
 
  ::selection {
@@ -58,8 +59,6 @@
 
 
 .scrollbar::-webkit-scrollbar {
-  /* width: var(--scrollbarWidth)px; */
-  /* width: calc(var(--scrollBarWidth) * 1); */
   width: calc(var(--scrollbarWidth)* 1px);
   background-color: var(--scrollbarBackgroundColor);
 } 

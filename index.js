@@ -152,8 +152,6 @@ ipcMain.on('textPrefsUpdate', (event, arg) => {
 
 
 
-
-
 ipcMain.on('scrollbarBackgroundColorPrefsUpdate', (event, arg) => {
   mainWindow.webContents.send('scrollbarBackgroundColorPrefsUpdate');
   event.returnValue = "received";
@@ -164,5 +162,12 @@ ipcMain.on('scrollbarThumbColorPrefsUpdate', (event, arg) => {
 })
 ipcMain.on('scrollbarWidthPrefsUpdate', (event, arg) => {
   mainWindow.webContents.send('scrollbarWidthPrefsUpdate');
+  event.returnValue = "received";
+})
+
+
+
+ipcMain.on('fontSizePrefsUpdate', (event, arg) => {
+  mainWindow.webContents.send('fontSizePrefsUpdate');
   event.returnValue = "received";
 })
