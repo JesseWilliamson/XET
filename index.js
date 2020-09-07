@@ -171,3 +171,8 @@ ipcMain.on('fontSizePrefsUpdate', (event, arg) => {
   mainWindow.webContents.send('fontSizePrefsUpdate');
   event.returnValue = "received";
 })
+
+ipcMain.on('fontFamilyPrefsUpdate', (event, arg) => {
+  mainWindow.webContents.send('fontFamilyPrefsUpdate');
+  event.returnValue = "received";
+})

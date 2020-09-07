@@ -45,6 +45,7 @@
  }
 
  * {
+   font-family: var(--fontFamily);
    list-style-type: none;
    margin: 2px;
    padding: 0;

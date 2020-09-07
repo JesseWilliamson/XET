@@ -55,6 +55,7 @@ scrollbarThumbColor = document.getElementById('scrollbarThumbColor')
 scrollbarWidth = document.getElementById('scrollbarWidth')
 
 fontSize = document.getElementById('fontSize')
+fontFamily = document.getElementById('fontFamily')
 
 document.documentElement.style.setProperty('--primary', store.get('primaryColor'));
 document.documentElement.style.setProperty('--secondary', store.get('secondaryColor'));
@@ -66,6 +67,7 @@ document.documentElement.style.setProperty('--scrollbarThumbColor', store.get('s
 document.documentElement.style.setProperty('--scrollbarWidth', store.get('storeScrollbarWidth'));
 
 document.documentElement.style.setProperty('--fontSize', store.get('storeFontSize'));
+document.documentElement.style.setProperty('--fontFamily', store.get('storeFontFamily'))
 
 
 uregion.value = store.get('suregion')
@@ -104,6 +106,14 @@ text.addEventListener('change', function () {
   document.documentElement.style.setProperty('--text', store.get('textColor'));
 })
 
+fontFamily.value = store.get('storeFontFamily')
+fontFamily.addEventListener('change', function () {
+  store.set('storeFontFamily', fontFamily.value);
+  ipcRenderer.sendSync('fontFamilyPrefsUpdate')
+  document.documentElement.style.setProperty('--fontFamily', store.get('storeFontFamily'));
+})
+
+
 
 
 
@@ -138,4 +148,5 @@ fontSize.addEventListener('change', function () {
   ipcRenderer.sendSync('fontSizePrefsUpdate')
   document.documentElement.style.setProperty('--fontSize', store.get('storeFontSize'));
 })
+
 

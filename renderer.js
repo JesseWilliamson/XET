@@ -25,6 +25,7 @@ ipcRenderer.on('scrollbarThumbColorPrefsUpdate', (event) => scrollbarThumbColorP
 ipcRenderer.on('scrollbarBackgroundColorPrefsUpdate', (event) => scrollbarBackgroundColorPrefsUpdate());
 
 ipcRenderer.on('fontSizePrefsUpdate', (event) => fontSizePrefsUpdate());
+ipcRenderer.on('fontFamilyPrefsUpdate', (event) => fontFamilyPrefsUpdate());
 
 ipcRenderer.on('insertDate', (event) => insertDate());
 ipcRenderer.on('insertDateAndTime', (event) => insertDateAndTime());
@@ -40,6 +41,7 @@ document.documentElement.style.setProperty('--scrollbarThumbColor', store.get('s
 document.documentElement.style.setProperty('--scrollbarWidth', store.get('storeScrollbarWidth'));
 
 document.documentElement.style.setProperty('--fontSize', store.get('storeFontSize'));
+document.documentElement.style.setProperty('--fontFamily', store.get('storeFontFamily'));
 
 
 
@@ -133,4 +135,9 @@ function scrollbarBackgroundColorPrefsUpdate() {
 function fontSizePrefsUpdate() {
   console.log(store.get('storeFontSize'));
   document.documentElement.style.setProperty('--fontSize', store.get('storeFontSize'));
+};
+
+function fontFamilyPrefsUpdate() {
+  console.log(store.get('storeFontFamily'));
+  document.documentElement.style.setProperty('--fontFamily', store.get('storeFontFamily'));
 };
