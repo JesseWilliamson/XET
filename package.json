@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "build": {
-    "appId": "your.id"
+    "appId": "com.electron.pencil"
   },
   "scripts": {
     "start": "electron index.js",
