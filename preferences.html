@@ -7,44 +7,69 @@
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
-<body class=>
+<body class="scrollbar">
 
-  <input id="primary" type="color"><span> Primary Colour</span>
-  <br>
-  <input id="secondary" type="color"><span> Secondary Colour</span>
-  <br>
-  <input id="accent" type="color"><span> Accent Colour</span>
-  <br>
-  <input id="text" type="color"><span> Text Colour</span>
-  <br>
-  <select id="selectRegion"></select>
-  <br>
-  <input id="scrollbarBackgroundColor" type="color"><span> Scrollbar Background Colour</span>
-  <br>
-  <input id="scrollbarThumbColor" type="color"><span> Scrollbar Thumb Colour</span>
-  <br>
-  <div class="slidecontainer">
-    <input type="range" min="0" max="15" class="slider" id="scrollbarWidth">
+
+  <div id="prefsBox">
+    <h1>Text Preferences</h1>
+    <br>
+    <input id="text" type="color"><span> Text Colour</span>
+    <br>
+    <select id="fontFamily">
+      <option style="font-family: Georgia, 'Times New Roman', Times, serif;">Georgia</option>
+      <option style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Impact</option>
+      <option style="font-family: Verdana, Geneva, Tahoma, sans-serif;">Veranda</option>
+      <option style="font-family: cursive;">Cursive</option>
+      <option style="font-family: fantasy;">Fantasy</option>
+      <option style="font-family: monospace;">Monospace</option>
+      <option style="font-family: sans-serif;">Sans-serif</option>
+      <option style="font-family: serif;">Serif</option>
+      <option style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Roboto</option>
+    </select> <span> Font Family</span>
+    <br>
+    <div class="slidecontainer">
+      <input type="range" min="5" max="22" class="slider" id="fontSize"><span> Font Size</span>
+    </div> 
   </div>
-  <br>
-  <div class="slidecontainer">
-    <input type="range" min="5" max="22" class="slider" id="fontSize">
+
+
+  <div id="prefsBox">
+    <h1>Scrollbar Preferences</h1>
+    <br>
+    <input id="scrollbarBackgroundColor" type="color"><span> Scrollbar Background Colour</span>
+    <br>
+    <input id="scrollbarThumbColor" type="color"><span> Scrollbar Thumb Colour</span>
+    <br>
+    <div class="slidecontainer">
+      <input type="range" min="0" max="15" class="slider" id="scrollbarWidth"><span> Scrollbar Width</span>
+    </div>
+    <br>
   </div>
+
+  <div id="prefsBox">
+    <h1>Colour Preferences</h1>
+    <input id="primary" type="color"><span> Primary Colour</span>
+    <br>
+    <input id="secondary" type="color"><span> Secondary Colour</span>
+    <br>
+    <input id="accent" type="color"><span> Accent Colour</span>
+    <br>
+  </div>
+
+  <div id="prefsBox">
+    <h1>Region/Formatting Preferences</h1>
+    <br>
+    <select id="selectRegion"></select><span> Region (for formatting date and time)</span>
+    <br>
+    
+  </div>
+
+
 
   <!-- <input id="scrollbarWidth" type="color"><span> Scrollbar Width</span>
   <br> -->
 
-  <select id="fontFamily">
-    <option style="font-family: Georgia, 'Times New Roman', Times, serif;">Georgia</option>
-    <option style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Impact</option>
-    <option style="font-family: Verdana, Geneva, Tahoma, sans-serif;">Veranda</option>
-    <option style="font-family: cursive;">Cursive</option>
-    <option style="font-family: fantasy;">Fantasy</option>
-    <option style="font-family: monospace;">Monospace</option>
-    <option style="font-family: sans-serif;">Sans-serif</option>
-    <option style="font-family: serif;">Serif</option>
-    <option style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Roboto</option>
-  </select>
+
 
   <script src="scripts/preferences.js"></script>
 </body>

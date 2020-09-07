@@ -12,7 +12,17 @@
    gap: 1px 1px;
    grid-template-areas: "sidebar page""stats stats";
  }
-
+/* 
+  .prefsBox{
+    padding: 10px;
+    background-color: var(--secondary );
+  } */
+#prefsBox{
+  margin: 25px;
+  padding: 25px;
+  background-color: var(--secondary); 
+  border-radius: 10px;
+}
  .sidebar {
    grid-area: sidebar;
  }
