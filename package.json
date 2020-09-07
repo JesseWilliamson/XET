@@ -1,9 +1,9 @@
 {
-  "name": "pencil",
+  "name": "XET",
   "version": "1.0.0",
   "main": "index.js",
   "build": {
-    "appId": "com.electron.pencil"
+    "appId": "com.electron.xet"
   },
   "scripts": {
     "start": "electron index.js",
