@@ -19,27 +19,33 @@ ipcRenderer.on('secondaryPrefsUpdate', (event) => secondaryPrefsUpdate());
 ipcRenderer.on('accentPrefsUpdate', (event) => accentPrefsUpdate());
 ipcRenderer.on('primaryPrefsUpdate', (event) => primaryPrefsUpdate());
 ipcRenderer.on('textPrefsUpdate', (event) => textPrefsUpdate());
-
 ipcRenderer.on('scrollbarWidthPrefsUpdate', (event) => scrollbarWidthPrefsUpdate());
 ipcRenderer.on('scrollbarThumbColorPrefsUpdate', (event) => scrollbarThumbColorPrefsUpdate());
 ipcRenderer.on('scrollbarBackgroundColorPrefsUpdate', (event) => scrollbarBackgroundColorPrefsUpdate());
-
 ipcRenderer.on('fontSizePrefsUpdate', (event) => fontSizePrefsUpdate());
 ipcRenderer.on('fontFamilyPrefsUpdate', (event) => fontFamilyPrefsUpdate());
-
 ipcRenderer.on('insertDate', (event) => insertDate());
 ipcRenderer.on('insertDateAndTime', (event) => insertDateAndTime());
+
+if (!store.get('suregion')) {store.set('suregion', 'en-AU')}
+if (!store.get('primaryColor')) {store.set('primaryColor', '#1A1A1A')}
+if (!store.get('secondaryColor')) {store.set('secondaryColor', '#242424')}
+if (!store.get('accentColor')) {store.set('accentColor', '#8100EB')}
+if (!store.get('textColor')) {store.set('textColor', '#FFFFFF')}
+if (!store.get('scrollbarBackgroundColor')) {store.set('storeScrollbarBackgroundColor', '#0A0A0A')}
+if (!store.get('scrollbarThumbColor')) {store.set('storeScrollbarThumbColor', '#8100EB')}
+if (!store.get('scrollbarWidth')) {store.set('storeScrollbarWidth', '8')}
+if (!store.get('fontSize')) {store.set('storeFontSize', '14')}
+if (!store.get('fontFamily')) {store.set('storeFontFamily', 'Monospace')}
 
 // Set document styles based on user preferences 
 document.documentElement.style.setProperty('--primary', store.get('primaryColor'));
 document.documentElement.style.setProperty('--secondary', store.get('secondaryColor'));
 document.documentElement.style.setProperty('--accent', store.get('accentColor'));
 document.documentElement.style.setProperty('--text', store.get('textColor'));
-
 document.documentElement.style.setProperty('--scrollbarBackgroundColor', store.get('storeScrollbarBackgroundColor'));
 document.documentElement.style.setProperty('--scrollbarThumbColor', store.get('storeScrollbarThumbColor'));
 document.documentElement.style.setProperty('--scrollbarWidth', store.get('storeScrollbarWidth'));
-
 document.documentElement.style.setProperty('--fontSize', store.get('storeFontSize'));
 document.documentElement.style.setProperty('--fontFamily', store.get('storeFontFamily'));
 
@@ -89,7 +95,6 @@ $("#page").on("change keyup paste", function () {
   //action to be performed on textarea changed
   wordScan()
 });
-
 
 
 

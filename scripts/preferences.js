@@ -73,7 +73,6 @@ document.documentElement.style.setProperty('--fontFamily', store.get('storeFontF
 uregion.value = store.get('suregion')
 uregion.addEventListener('change', function () {
   store.set('suregion', uregion.value);
-  ipcRenderer.sendSync('primaryPrefsUpdate')
 })
 
 primary.value = store.get('primaryColor')
