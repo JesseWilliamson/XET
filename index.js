@@ -1,9 +1,16 @@
-const { app, BrowserWindow, ipcMain, Menu, shell } = require('electron')
+const {
+  app,
+  BrowserWindow,
+  ipcMain,
+  Menu,
+  shell
+} = require('electron')
 const contextMenu = require('electron-context-menu');
 
 let mainWindow;
 let prefWindow;
 
+//Create the main window of the application (This is where the page, sidebar, and page stats can be seen)
 const createMainWindow = () => {
   mainWindow = new BrowserWindow({
     backgroundColor: '#FFF',
@@ -14,13 +21,10 @@ const createMainWindow = () => {
       enableRemoteModule: true
     }
   });
-
-  // and load the index.html of the app.
   mainWindow.loadFile('index.html')
 }
 
-
-
+//Create the preference window when needed (This is where the user can change preferences including colour, region, and sizing)
 const createPrefWindow = () => {
   prefWindow = new BrowserWindow({
     width: 800,
@@ -36,34 +40,31 @@ const createPrefWindow = () => {
   prefWindow.loadFile('preferences.html')
 }
 
-app.whenReady().then(createMainWindow) 
+app.whenReady().then(createMainWindow)
 
-
-
-app.on('ready', function(){
-  const template = [
-    {
+app.on('ready', function () {
+  //create the menu bar in the main window
+  const template = [{
       label: 'File',
-      submenu: [ 
-        {
+      submenu: [{
           label: 'Open',
           accelerator: 'CmdOrCtrl+o',
-          click: function(){
+          click: function () {
             mainWindow.webContents.send('openFile');
           }
-          
+
         },
         {
           label: 'Save As',
           accelerator: 'CmdOrCtrl+shift+s',
-          click: function(){
+          click: function () {
             mainWindow.webContents.send('saveFileAs');
           }
         },
         {
           label: 'Save',
           accelerator: 'CmdOrCtrl+s',
-          click: function(){
+          click: function () {
             mainWindow.webContents.send('saveFile');
           }
         }
@@ -71,29 +72,26 @@ app.on('ready', function(){
     },
     {
       label: 'Edit',
-      submenu: [ 
-        {
-          label: 'Preferences',
-          click: function(){
-            createPrefWindow()
-          }
+      submenu: [{
+        label: 'Preferences',
+        click: function () {
+          createPrefWindow()
         }
-      ]
+      }]
     },
     {
       label: 'Insert',
-      submenu: [ 
-        {
+      submenu: [{
           label: 'Date',
           accelerator: 'CmdOrCtrl+d',
-          click: function(){
+          click: function () {
             mainWindow.webContents.send('insertDate');
           }
         },
         {
           label: 'Date and Time',
           accelerator: 'CmdOrCtrl+shift+d',
-          click: function(){
+          click: function () {
             mainWindow.webContents.send('insertDateAndTime');
           }
         }
@@ -101,18 +99,14 @@ app.on('ready', function(){
     }
   ]
 
-
   const menu = Menu.buildFromTemplate(template)
   Menu.setApplicationMenu(menu)
 
-  
 
-
+  // This is the right-click menu
   contextMenu({
     showSearchWithGoogle: false,
-    // options: (showSearchWithGoogle = false),
-    prepend: (defaultActions, params, browserWindow) => [
-      {
+    prepend: (defaultActions, params, browserWindow) => [{
         label: 'Search Google for “{selection}”',
         // Only show it when right-clicking text
         visible: params.selectionText.trim().length > 0,
@@ -132,7 +126,7 @@ app.on('ready', function(){
   });
 })
 
-
+//Communication with the main window and the user preferences window (both in the render process)
 ipcMain.on('secondaryPrefsUpdate', (event, arg) => {
   mainWindow.webContents.send('secondaryPrefsUpdate');
   event.returnValue = "received";
@@ -149,9 +143,6 @@ ipcMain.on('textPrefsUpdate', (event, arg) => {
   mainWindow.webContents.send('textPrefsUpdate');
   event.returnValue = "received";
 })
-
-
-
 ipcMain.on('scrollbarBackgroundColorPrefsUpdate', (event, arg) => {
   mainWindow.webContents.send('scrollbarBackgroundColorPrefsUpdate');
   event.returnValue = "received";
@@ -164,16 +155,11 @@ ipcMain.on('scrollbarWidthPrefsUpdate', (event, arg) => {
   mainWindow.webContents.send('scrollbarWidthPrefsUpdate');
   event.returnValue = "received";
 })
-
-
-
 ipcMain.on('fontSizePrefsUpdate', (event, arg) => {
   mainWindow.webContents.send('fontSizePrefsUpdate');
   event.returnValue = "received";
 })
-
 ipcMain.on('fontFamilyPrefsUpdate', (event, arg) => {
   mainWindow.webContents.send('fontFamilyPrefsUpdate');
   event.returnValue = "received";
 })
-

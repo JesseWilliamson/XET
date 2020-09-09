@@ -1,8 +1,4 @@
 var fs = require("fs");
-
-const {
-  FindInPage
-} = require('electron-find')
 const {
   remote,
   ipcRenderer
@@ -11,7 +7,7 @@ const Store = require('electron-store');
 const store = new Store();
 WIN = remote.getCurrentWindow();
 
-// Recieve messages from the menu or prefs window, passed through the main process
+//This recieves messages from the menu or prefs window, passed through the main process
 ipcRenderer.on('openFile', (event) => openFile());
 ipcRenderer.on('saveFileAs', (event) => saveFileAs());
 ipcRenderer.on('saveFile', (event) => saveFile());
@@ -27,6 +23,7 @@ ipcRenderer.on('fontFamilyPrefsUpdate', (event) => fontFamilyPrefsUpdate());
 ipcRenderer.on('insertDate', (event) => insertDate());
 ipcRenderer.on('insertDateAndTime', (event) => insertDateAndTime());
 
+//This sets default preference values if none are already present
 if (!store.get('suregion')) {store.set('suregion', 'en-AU')}
 if (!store.get('primaryColor')) {store.set('primaryColor', '#1A1A1A')}
 if (!store.get('secondaryColor')) {store.set('secondaryColor', '#242424')}
@@ -38,7 +35,7 @@ if (!store.get('scrollbarWidth')) {store.set('storeScrollbarWidth', '8')}
 if (!store.get('fontSize')) {store.set('storeFontSize', '14')}
 if (!store.get('fontFamily')) {store.set('storeFontFamily', 'Monospace')}
 
-// Set document styles based on user preferences 
+//This sets document styles based on user preferences 
 document.documentElement.style.setProperty('--primary', store.get('primaryColor'));
 document.documentElement.style.setProperty('--secondary', store.get('secondaryColor'));
 document.documentElement.style.setProperty('--accent', store.get('accentColor'));
@@ -49,24 +46,9 @@ document.documentElement.style.setProperty('--scrollbarWidth', store.get('storeS
 document.documentElement.style.setProperty('--fontSize', store.get('storeFontSize'));
 document.documentElement.style.setProperty('--fontFamily', store.get('storeFontFamily'));
 
-
-
-
-
 window.$ = window.jQuery = require('jquery');
 
-
-
-
-
-// let findInPage = new FindInPage(remote.getCurrentWebContents())
-
-// shortcut.add("Ctrl+f", function () {
-//   findInPage.openFindWindow()
-// });
-
-
-
+//This scans the page, and provides data on the word-count, vocabulary, and line-count
 function wordScan() {
   var content = document.getElementById("page").value;
   var contentarr = content.split(/[\r?\n\s,\r]+/);
@@ -86,23 +68,18 @@ function wordScan() {
   statsBox.innerHTML = "W:" + String(contentarr.length - 1) + " " + "V:" + String(vocabulary.size - 1 + " " + "L:" + lineArr.length)
 }
 
+//This executes the wordscan function when the textarea is changed
 $("#page").on("change keyup paste", function () {
   var currentVal = $(this).val();
   if (currentVal == oldVal) {
-    return; //check to prevent multiple simultaneous triggers
+    return; //checks to prevent multiple accidental triggers
   }
   var oldVal = currentVal;
-  //action to be performed on textarea changed
+  //executes wordScan function when the textarea is changed
   wordScan()
 });
 
-
-
-
-
-
-
-
+//this handles communication with other processes and windows
 function secondaryPrefsUpdate() {
   console.log(store.get('secondaryColor'));
   document.documentElement.style.setProperty('--secondary', store.get('secondaryColor'));
@@ -119,9 +96,6 @@ function textPrefsUpdate() {
   console.log(store.get('textColor'));
   document.documentElement.style.setProperty('--text', store.get('textColor'));
 };
-
-
-
 function scrollbarWidthPrefsUpdate() {
   console.log(store.get('storeScrollbarWidth'));
   document.documentElement.style.setProperty('--scrollbarWidth', store.get('storeScrollbarWidth'));
@@ -134,14 +108,10 @@ function scrollbarBackgroundColorPrefsUpdate() {
   console.log(store.get('storeScrollbarBackgroundColor'));
   document.documentElement.style.setProperty('--scrollbarBackgroundColor', store.get('storeScrollbarBackgroundColor'));
 };
-
-
-
 function fontSizePrefsUpdate() {
   console.log(store.get('storeFontSize'));
   document.documentElement.style.setProperty('--fontSize', store.get('storeFontSize'));
 };
-
 function fontFamilyPrefsUpdate() {
   console.log(store.get('storeFontFamily'));
   document.documentElement.style.setProperty('--fontFamily', store.get('storeFontFamily'));

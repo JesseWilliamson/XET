@@ -1,6 +1,6 @@
 {
   "name": "XET",
-  "version": "2.0.1",
+  "version": "2.0.4",
   "main": "index.js",
   "build": {
     "appId": "com.electron.xet"
